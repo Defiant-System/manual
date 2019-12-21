@@ -1,0 +1,147 @@
+
+@import "marked";
+
+@sidebar-speed: 280ms;
+
+layout {
+	background: #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	flex-flow: wrap;
+	.transitionWhat(background, @sidebar-speed * 0.75);
+
+	&.inverted {
+		background: #252a2a;
+		color: #eee;
+		border-color: #555;
+
+		sidebar {
+			&:after {
+				border-color: #555;
+			}
+			.arrow svg {
+				--color-1: #bbb;
+			}
+		}
+	}
+}
+
+sidebar {
+	background: transparent;
+	width: 180px;
+	.transitionWhat(width, @sidebar-speed * 0.75);
+
+	&.hidden {
+		width: 0;
+
+		&:after {
+			border-color: transparent;
+		}
+	}
+
+	&:after {
+		border-color: #d5d5d5;
+		.transitionWhat(border-color, @sidebar-speed * 2);
+	}
+
+	> div.toc {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow-y: auto;
+
+		.blank,
+		.arrow {
+			display: inline-block;
+			width: 18px;
+			height: 18px;
+			text-align: center;
+			margin: 0 1px;
+
+			svg {
+				width: 10px;
+				height: 10px;
+				--color-1: #555;
+				.transition(60ms);
+			}
+		}
+
+		> ul {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			list-style: none;
+			line-height: 1.6;
+
+			.active {
+				background: #36b;
+				color: #fff;
+			}
+
+			legend {
+				padding: 4px 0 3px 1px;
+
+				span {
+					vertical-align: top;
+				}
+			}
+
+			li {
+				position: relative;
+				width: 180px;
+
+				&.expanded {
+					legend .arrow svg {
+						.transform( rotate(90deg) )
+					}
+					div {
+						max-height: 500px;
+
+						ul {
+							margin-top: 0;
+						}
+					}
+				}
+
+				div {
+					position: relative;
+					max-height: 0;
+					overflow: hidden;
+					.transition(@sidebar-speed * 0.75);
+				}
+
+				ul {
+					margin-top: -100%;
+					.transition(@sidebar-speed * 0.75);
+
+					li {
+						padding: 4px 0 3px 31px;
+					}
+				}
+			}
+		}
+	}
+}
+
+content {
+	background: transparent;
+	position: relative;
+	flex: auto;
+
+	.markdown-body {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow: auto;
+		padding: 23px 23px 41px;
+	}
+}
