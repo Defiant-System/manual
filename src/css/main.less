@@ -12,7 +12,7 @@ layout {
 	bottom: 0;
 	display: flex;
 	flex-flow: wrap;
-	.transitionWhat(background, @sidebar-speed * 0.75);
+	transition: background @sidebar-speed * 0.75;
 
 	&.inverted {
 		background: #252a2a;
@@ -33,7 +33,7 @@ layout {
 sidebar {
 	background: transparent;
 	width: 180px;
-	.transitionWhat(width, @sidebar-speed * 0.75);
+	transition: width @sidebar-speed * 0.75;
 
 	&.hidden {
 		width: 0;
@@ -45,7 +45,7 @@ sidebar {
 
 	&:after {
 		border-color: #d5d5d5;
-		.transitionWhat(border-color, @sidebar-speed * 2);
+		transition: border-color @sidebar-speed * 2;
 	}
 
 	> div.toc {
@@ -68,7 +68,7 @@ sidebar {
 				width: 10px;
 				height: 10px;
 				--color-1: #555;
-				.transition(60ms);
+				transition: all 60ms;
 			}
 		}
 
@@ -99,7 +99,7 @@ sidebar {
 
 				&.expanded {
 					legend .arrow svg {
-						.transform( rotate(90deg) )
+						transform: rotate(90deg);
 					}
 					div {
 						max-height: 500px;
@@ -114,12 +114,12 @@ sidebar {
 					position: relative;
 					max-height: 0;
 					overflow: hidden;
-					.transition(@sidebar-speed * 0.75);
+					transition: all @sidebar-speed * 0.75;
 				}
 
 				ul {
 					margin-top: -100%;
-					.transition(@sidebar-speed * 0.75);
+					transition: all @sidebar-speed * 0.75;
 
 					li {
 						padding: 4px 0 3px 31px;
