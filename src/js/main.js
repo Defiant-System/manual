@@ -33,6 +33,7 @@ const manual = {
 					contentView.dispatch({
 						type: "parse-markdown",
 						text: file.text,
+						path: file.path,
 					});
 				}
 				break;

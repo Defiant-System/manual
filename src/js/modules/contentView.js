@@ -12,6 +12,7 @@ let contentView = {
 	},
 	async dispatch(event) {
 		let el,
+			app,
 			file,
 			isOn,
 			htm,
@@ -23,6 +24,11 @@ let contentView = {
 				text = file.result.text;
 			case "parse-markdown":
 				text = text || event.text;
+				
+				// post-parse file
+				app = event.path.startsWith("/app/ant/") ? event.path.match(/\/app\/ant\/(.+?)\//i)[1] : "";
+				text = text.replace(/~\//g, `/app/ant/${app}/`);
+
 				htm = window.marked(text);
 				this.el.html(htm);
 				break;
