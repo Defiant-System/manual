@@ -1,5 +1,5 @@
 
-require("./modules/marked.min.js");
+defiant.require("./modules/marked.min.js");
 
 import sideBar from "./modules/sideBar"
 import contentView from "./modules/contentView"
