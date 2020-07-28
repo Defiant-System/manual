@@ -5,7 +5,6 @@
 			<Tool symbol="icon-arrow-right" state="disabled"/>
 		</Options>
 		<Tool symbol="icon-sidebar" class="tool-sidebar-toogle" click="sidebar-toggle-view"/>
-		<Tool symbol="icon-night-toggle" click="content-toggle-lights"/>
 	</Group>
 	<Group width="37%">
 		<Search placeholder="Search"/>

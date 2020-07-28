@@ -37,8 +37,6 @@ const manual = {
 					});
 				}
 				break;
-			case "content-toggle-lights":
-				return contentView.dispatch(event);
 			case "sidebar-toggle-view":
 			case "sidebar-select-article":
 				return sideBar.dispatch(event);

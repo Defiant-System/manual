@@ -32,11 +32,6 @@ let contentView = {
 				htm = window.marked(text);
 				this.el.html(htm);
 				break;
-			case "content-toggle-lights":
-				el = window.find("layout");
-				isOn = el.hasClass("inverted");
-				el.toggleClass("inverted", isOn);
-				return isOn;
 		}
 	}
 };
