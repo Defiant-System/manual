@@ -2,19 +2,6 @@
 	<Menu name="Manual">
 		<Menu name="About Manual" shell="win -a"/>
 		<Menu type="divider"/>
-		<Menu name="Preferences"/>
-		<Menu type="divider"/>
-		<Menu name="Emptry Trash"/>
-		<Menu type="divider"/>
-		<Menu name="Services">
-			<Menu name="Open"/>
-			<Menu name="Close"/>
-		</Menu>
-		<Menu type="divider"/>
-		<Menu name="Hide Manual"/>
-		<Menu name="Hide Others"/>
-		<Menu name="Show All" disabled="1"/>
-		<Menu type="divider"/>
 		<Menu name="Quit Manual" shell="win -c"/>
 	</Menu>
 	<Menu name="Help">
