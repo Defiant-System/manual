@@ -7,8 +7,8 @@
 		<meta name="repository" value="https://github.com/Defiant-System/manual"/>
 		<meta name="width" value="600"/>
 		<meta name="height" value="750"/>
-		<meta name="top" value="100"/>
-		<meta name="left" value="500"/>
+		<meta name="top" value="70"/>
+		<meta name="right" value="50"/>
 		<meta name="minimize"/>
 		<meta name="maximize"/>
 		<meta name="resize"/>
