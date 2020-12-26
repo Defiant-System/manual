@@ -13,8 +13,11 @@ const manual = {
 		let file;
 		switch (event.type) {
 			case "open.file":
-				file = typeof event.open === "function" ? await event.open() : event;
-				
+				if (event.text) {
+					file = event;
+				} else {
+					file = await event.open();
+				}
 				if (file.text.slice(0,5).toLowerCase() === "[toc]") {
 					// shows sidebar toggler in the toolbar
 					window.find(".tool-sidebar-toogle").show();
