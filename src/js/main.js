@@ -15,7 +15,7 @@ const manual = {
 			case "open.file":
 				event.open({ responseType: "text" })
 					.then(file => {
-						if (file.text.slice(0,5).toLowerCase() === "[toc]") {
+						if (file.data.slice(0,5).toLowerCase() === "[toc]") {
 							// shows sidebar toggler in the toolbar
 							window.find(".tool-sidebar-toogle").show();
 
@@ -23,7 +23,7 @@ const manual = {
 							sideBar.dispatch({
 								type: "parse-toc",
 								path: file.path,
-								text: file.text,
+								data: file.data,
 							});
 						} else {
 							// hides sidebar toggler in the toolbar
@@ -32,7 +32,7 @@ const manual = {
 							// sidebar parse file
 							contentView.dispatch({
 								type: "parse-markdown",
-								text: file.text,
+								data: file.data,
 								path: file.path,
 							});
 						}

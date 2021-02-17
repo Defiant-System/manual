@@ -21,9 +21,9 @@ let contentView = {
 			case "load-markdown-file":
 				// load file
 				file = await defiant.shell(`fs -r "${event.path}"`);
-				text = file.result.text;
+				text = file.result.data;
 			case "parse-markdown":
-				text = text || event.text;
+				text = text || event.data;
 				
 				// post-parse file
 				app = event.path.startsWith("/app/ant/") ? event.path.match(/\/app\/ant\/(.+?)\//i)[1] : "";

@@ -20,7 +20,7 @@ let sideBar = {
 				let indent;
 
 				// parse markdown toc into XML structure
-				event.text.slice(6).split("\n")
+				event.data.slice(6).split("\n")
 					.map((line, index) => {
 						if (!line.trim()) return;
 
