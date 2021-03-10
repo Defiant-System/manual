@@ -54,7 +54,7 @@ let sideBar = {
 				pEl = sideBar.el.parents("sidebar");
 				isOn = pEl.hasClass("hidden");
 				pEl.toggleClass("hidden", isOn);
-				return !isOn;
+				return isOn;
 			case "sidebar-select-article":
 				el = $(event.target).parents("legend:first");
 				

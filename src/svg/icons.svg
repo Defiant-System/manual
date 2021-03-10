@@ -1,15 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
-	<svg id="icon-arrow-left" viewBox="0 0 1024 1024">
-		<path fill="#333" d="M46.236,491.33L833.312,53.934c18.372-10.076,33.189-1.185,33.189,19.558v872.422c0,20.744-14.817,29.634-33.189,19.558 L46.236,528.076C27.863,518,27.863,501.406,46.236,491.33L46.236,491.33z"/>
+
+	<svg id="icon-arrow-left" viewBox="0 0 13 13">
+		<style type="text/css">
+			.st0{fill:#333;}
+		</style>
+		<polygon class="st0" points="9.2,1.6 8.5,0.8 3.5,5.8 3.5,5.8 2.8,6.5 3.5,7.2 8.5,12.2 9.2,11.4 4.2,6.5 "/>
 	</svg>
 
-	<svg id="icon-arrow-right" viewBox="0 0 1024 1024">
-		<path fill="#333" d="M973.724,528.076L186.648,965.472c-18.373,10.076-33.19,1.186-33.19-19.558V73.492c0-20.744,14.817-29.634,33.19-19.558 L973.724,491.33C992.097,501.406,992.097,518,973.724,528.076z"/>
+	<svg id="icon-arrow-right" viewBox="0 0 13 13">
+		<style type="text/css">
+			.st0{fill:#333;}
+		</style>
+		<polygon class="st0" points="2.8,11.4 3.5,12.2 8.5,7.2 8.5,7.2 9.2,6.5 8.5,5.8 3.5,0.8 2.8,1.6 7.8,6.5 "/>
 	</svg>
 
-	<svg id="icon-sidebar" viewBox="0 0 500 500">
-		<path fill="#333" d="M480,40H20C8.954,40,0,48.954,0,60v380c0,11.046,8.954,20,20,20h460c11.046,0,20-8.954,20-20V60 C500,48.954,491.046,40,480,40z M40,80h120v340H40V80z M460,420H200V80h260V420z"/>
-		<rect fill="#333" x="70" y="120" width="50" height="50"/>
-		<rect fill="#333" x="70" y="210" width="50" height="50"/>
+	<svg id="icon-sidebar" viewBox="0 0 13 13">
+		<style type="text/css">
+			.st0{fill:#333;}
+		</style>
+		<path class="st0" d="M11,2H6H5H2H1v1v7v1h1h3h1h5h1v-1V3V2H11z M2,10V3h3v7H2z M11,10H6V3h5V10z"/>
+		<rect x="3" y="4" class="st0" width="1" height="1"/>
+		<rect x="3" y="6" class="st0" width="1" height="1"/>
 	</svg>
+	
 </svg>
