@@ -1,8 +1,8 @@
 <Application>
 	<Head>
 		<meta name="id" value="manual"/>
-		<meta name="title" value="Manual" version="1.2 sys"/>
-		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
+		<meta name="title" value="Manual" version="1.2"/>
+		<meta name="author" value="Hakan Bilgin" namespace="sys"/>
 		<meta name="license" value="AGPL-3.0-or-later"/>
 		<meta name="repository" value="https://github.com/Defiant-System/manual"/>
 		<meta name="width" value="600"/>
