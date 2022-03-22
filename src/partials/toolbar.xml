@@ -4,9 +4,9 @@
 			<Tool symbol="icon-arrow-left" state="disabled"/>
 			<Tool symbol="icon-arrow-right" state="disabled"/>
 		</Options>
-		<Tool symbol="icon-sidebar" class="tool-sidebar-toogle" click="sidebar-toggle-view"/>
+		<Tool symbol="icon-sidebar" state="disabled1" click="sidebar-toggle-view"/>
 	</Group>
 	<Group width="37%">
-		<Search placeholder="Search"/>
+		<Search placeholder="Search" state="disabled"/>
 	</Group>
 </ToolBar>

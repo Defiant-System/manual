@@ -32,3 +32,5 @@
 		</xsl:for-each>
 	</ul>
 </xsl:template>
+
+</xsl:stylesheet>

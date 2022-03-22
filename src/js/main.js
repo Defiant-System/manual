@@ -12,6 +12,13 @@ const manual = {
 	dispatch(event) {
 		let file;
 		switch (event.type) {
+			// system events
+			case "window.init":
+				defiant_.shell_.execute_("fs -ur '~/help/index.md'")
+					.then(cmd => {
+						console.log( cmd.result );
+					});
+				break;
 			case "open.file":
 				event.open({ responseType: "text" })
 					.then(file => {
@@ -38,6 +45,7 @@ const manual = {
 						}
 					});
 				break;
+			// custom events
 			case "sidebar-toggle-view":
 			case "sidebar-select-article":
 				return sideBar.dispatch(event);
