@@ -10,40 +10,42 @@ const manual = {
 		contentView.init(manual, sideBar);
 	},
 	dispatch(event) {
-		let file;
+		let Self = manual,
+			file;
 		switch (event.type) {
 			// system events
 			case "window.init":
-				defiant_.shell_.execute_("fs -ur '~/help/index.md'")
-					.then(cmd => {
-						console.log( cmd.result );
-					});
+				defiant.shell("fs -ur '~/help/Welcome.md'")
+					.then(cmd => Self.dispatch({ type: "parse-file", file: cmd.result }));
 				break;
 			case "open.file":
 				event.open({ responseType: "text" })
 					.then(file => {
-						if (file.data.slice(0,5).toLowerCase() === "[toc]") {
-							// shows sidebar toggler in the toolbar
-							window.find(".tool-sidebar-toogle").show();
-
-							// sidebar parse toc
-							sideBar.dispatch({
-								type: "parse-toc",
-								path: file.path,
-								data: file.data,
-							});
-						} else {
-							// hides sidebar toggler in the toolbar
-							window.find(".tool-sidebar-toogle").hide();
-
-							// sidebar parse file
-							contentView.dispatch({
-								type: "parse-markdown",
-								data: file.data,
-								path: file.path,
-							});
-						}
+						Self.dispatch({ type: "parse-file", file });
 					});
+				break;
+			case "parse-file":
+				if (event.file.data.slice(0,5).toLowerCase() === "[toc]") {
+					// shows sidebar toggler in the toolbar
+					window.find(".tool-sidebar-toogle").show();
+
+					// sidebar parse toc
+					sideBar.dispatch({
+						type: "parse-toc",
+						path: event.file.path,
+						data: event.file.data,
+					});
+				} else {
+					// hides sidebar toggler in the toolbar
+					window.find(".tool-sidebar-toogle").hide();
+
+					// sidebar parse file
+					contentView.dispatch({
+						type: "parse-markdown",
+						data: event.file.data,
+						path: event.file.path,
+					});
+				}
 				break;
 			// custom events
 			case "sidebar-toggle-view":
