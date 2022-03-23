@@ -1,5 +1,7 @@
 
-let blankView = {
+// manual.blankView
+
+{
 	init() {
 		// fast and direct references
 		this.el = window.find("content .blank-view");
@@ -11,13 +13,13 @@ let blankView = {
 		});
 	},
 	async dispatch(event) {
-		let Self = blankView,
+		let APP = manual,
+			Self = APP.blankView,
 			el;
 		switch (event.type) {
-			case "parse-toc":
+			case "open-filesystem":
+				APP.dispatch({ type: "open-file" });
 				break;
 		}
 	}
-};
-
-export default blankView;
+}

@@ -1,20 +1,15 @@
 
-let manual;
-let sidebar;
-
-let contentView = {
-	init(_manual, _sidebar) {
+{
+	init() {
 		// fast and direct references
-		manual = _manual;
-		sidebar = _sidebar;
-
 		this.el = window.find("content > .markdown-body");
 	},
 	async dispatch(event) {
-		let el,
+		let APP = manual,
+			Self = APP.contentView,
+			el,
 			app,
 			file,
-			isOn,
 			htm,
 			text;
 		switch (event.type) {
@@ -43,6 +38,4 @@ let contentView = {
 				break;
 		}
 	}
-};
-
-export default contentView;
+}

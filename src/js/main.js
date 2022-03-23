@@ -1,10 +1,6 @@
 
 @import "./modules/marked.min.js";
 
-import blankView from "./modules/blankView"
-import sideBar from "./modules/sideBar"
-import contentView from "./modules/contentView"
-
 
 const manual = {
 	init() {
@@ -18,11 +14,11 @@ const manual = {
 				next: window.find(`.toolbar-tool_[data-click="go-next"]`),
 			}
 		};
-
 		// init all sub-objects
-		blankView.init();
-		sideBar.init(manual, contentView);
-		contentView.init(manual, sideBar);
+		Object.keys(this)
+			.filter(i => typeof this[i].init === "function")
+			.map(i => this[i].init(this));
+
 	},
 	dispatch(event) {
 		let Self = manual,
@@ -50,7 +46,7 @@ const manual = {
 			case "reset-app":
 			case "close-file":
 				// hide sidebar, if needed
-				if (!sideBar.el.parent().hasClass("hidden")) {
+				if (!Self.sidebar.el.parent().hasClass("hidden")) {
 					Self.els.toolbar.sidebar
 						.prop({ className: "toolbar-tool_" })
 						.trigger("click");
@@ -76,7 +72,7 @@ const manual = {
 					window.find(".tool-sidebar-toogle").show();
 
 					// sidebar parse toc
-					sideBar.dispatch({
+					Self.sidebar.dispatch({
 						type: "parse-toc",
 						path: event.file.path,
 						data: event.file.data,
@@ -86,19 +82,30 @@ const manual = {
 					window.find(".tool-sidebar-toogle").hide();
 
 					// sidebar parse file
-					contentView.dispatch({
+					Self.contentView.dispatch({
 						type: "parse-markdown",
 						data: event.file.data,
 						path: event.file.path,
 					});
 				}
 				break;
-			// custom events
+			// proxy events
 			case "sidebar-toggle-view":
-			case "sidebar-select-article":
-				return sideBar.dispatch(event);
+				return Self.sidebar.dispatch(event);
+			
+			default:
+				if (event.el) {
+					let pEl = event.el.parents(`div[data-area]`);
+					if (pEl.length) {
+						let name = pEl.data("area");
+						Self[name].dispatch(event);
+					}
+				}
 		}
-	}
+	},
+	blankView: @import "modules/blankView.js",
+	contentView: @import "modules/contentView.js",
+	sidebar: @import "modules/sidebar.js",
 };
 
 window.exports = manual;

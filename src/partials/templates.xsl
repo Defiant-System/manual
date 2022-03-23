@@ -20,12 +20,6 @@
 		<xsl:call-template name="sample-list" />
 	</div>
 
-	<xsl:if test="count(./Recents/*) &gt; 0">
-		<div class="block-recent" data-click="select-recent-file">
-			<h3>Recent</h3>
-			<xsl:call-template name="recent-list" />
-		</div>
-	</xsl:if>
 </xsl:template>
 
 
@@ -34,16 +28,6 @@
 		<div class="sample">
 			<!-- <xsl:attribute name="style">background-image: url(<xsl:value-of select="@path"/>);</xsl:attribute> -->
 			<xsl:attribute name="data-url"><xsl:value-of select="@path"/></xsl:attribute>
-			<span class="name"><xsl:value-of select="@name"/></span>
-		</div>
-	</xsl:for-each>
-</xsl:template>
-
-
-<xsl:template name="recent-list">
-	<xsl:for-each select="./Recents/*">
-		<div class="recent-file">
-			<xsl:attribute name="data-file"><xsl:value-of select="@filepath"/></xsl:attribute>
 			<span class="name"><xsl:value-of select="@name"/></span>
 		</div>
 	</xsl:for-each>

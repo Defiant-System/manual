@@ -1,9 +1,12 @@
 <layout>
-	<sidebar class="hidden" data-click="sidebar-select-article">
-		<div class="toc"></div>
+	<sidebar class="hidden" data-area="sidebar">
+		<div class="toc" data-click="sidebar-select-article"></div>
 	</sidebar>
 	<content>
-		<div class="blank-view" data-area="blankView"></div>
+		<!-- shown if no file is opened -->
+		<div class="blank-view" data-area="blankView">
+			<!-- blank view HTML goes here -->
+		</div>
 		<div class="markdown-body"></div>
 	</content>
 </layout>

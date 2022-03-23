@@ -1,17 +1,13 @@
 
-let manual;
-let contentView;
-
-let sideBar = {
-	init(_manual, _contentView) {
+{
+	init() {
 		// fast and direct references
-		manual = _manual;
-		contentView = _contentView;
-
 		this.el = window.find("sidebar > div");
 	},
 	async dispatch(event) {
-		let el,
+		let APP = manual,
+			Self = APP.sidebar,
+			el,
 			pEl,
 			isOn;
 		switch (event.type) {
@@ -51,7 +47,7 @@ let sideBar = {
 				this.el.find("[data-path]:first").trigger("click");
 				break;
 			case "sidebar-toggle-view":
-				pEl = sideBar.el.parents("sidebar");
+				pEl = Self.el.parents("sidebar");
 				isOn = pEl.hasClass("hidden");
 				pEl.toggleClass("hidden", isOn);
 				return isOn;
@@ -92,6 +88,4 @@ let sideBar = {
 				break;
 		}
 	}
-};
-
-export default sideBar;
+}
