@@ -1,11 +1,11 @@
 <Data>
 	<Samples>
-		<i path="~/samples/sample-1.md" preview="~/img/sample-1.jpg"/>
-		<i path="~/samples/sample-2.md" preview="~/img/sample-2.jpg"/>
-		<i path="~/samples/sample-3.md" preview="~/img/sample-3.jpg"/>
+		<i name="About System" path="~/samples/sample-1.md"/>
+		<i name="About Application" path="~/samples/sample-2.md"/>
+		<i name="Random" path="~/samples/sample-3.md"/>
 	</Samples>
 	<Recents>
-		<i name="sample-1.md" filepath="~/samples/sample-1.md" preview="~/img/sample-1.jpg"/>
-		<i name="sample-2.md" filepath="~/samples/sample-2.md" preview="~/img/sample-2.jpg"/>
+		<i name="sample-1.md" filepath="~/samples/sample-1.md"/>
+		<i name="sample-2.md" filepath="~/samples/sample-2.md"/>
 	</Recents>
 </Data>
