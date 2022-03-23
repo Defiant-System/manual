@@ -1,4 +1,12 @@
 
+/*
+
+TODO:
+ - Fix TOC
+ - Toggle sidebar button, if TOC exists
+
+*/
+
 @import "./modules/marked.min.js";
 
 
