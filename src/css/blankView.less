@@ -71,37 +71,38 @@
 
 		.sample {
 			display: inline-block;
-			background-color: #fff;
+			background-color: #ccc;
 			background-size: 0 0;
 			position: relative;
 			width: 142px;
 			height: 178px;
 			margin: 0 21px 13px 0;
-			border-radius: 5px;
+			border-radius: 7px;
 			cursor: pointer;
-			box-shadow: 0 0 0 3px #ccc,
-						inset 0 0 0 3px #ccc;
 
 			&:last-child {
 				margin-right: 0;
 			}
 
 			&:hover {
-				box-shadow: 0 0 0 3px #489bf770,
-							inset 0 0 0 3px #489bf7;
+				background-color: #489bf770;
+				
+				&:after {
+					box-shadow: 0 0 0 1px #489bf7c0;
+				}
 			}
 
 			&:after {
 				content: "";
-				background: inherit;
+				background-color: #fff;
 				background-position: 50% 50%;
 				background-repeat: no-repeat;
 				background-size: contain;
 				position: absolute;
-				top: 2px;
-				left: 2px;
-				right: 2px;
-				bottom: 2px;
+				top: 5px;
+				left: 5px;
+				right: 5px;
+				bottom: 5px;
 				border-radius: 4px;
 			}
 		}
@@ -111,47 +112,47 @@
 		flex: 1;
 
 		.recent-file {
-			background: rgba(0,0,0,.075);
 			display: inline-block;
+			background-color: #ccc;
 			position: relative;
-			width: 173px;
-			height: 151px;
+			width: 142px;
+			height: 178px;
 			margin: 0 17px 47px 0;
 			padding: 5px 0 0;
 			text-align: center;
-			border-radius: 11px;
+			border-radius: 7px;
 			cursor: pointer;
+
+			&:last-child {
+				margin-right: 0;
+			}
 
 			&:before {
 				content: "";
+				background: #fff;
 				position: absolute;
 				top: 5px;
 				left: 5px;
 				right: 5px;
 				bottom: 5px;
-				border-radius: 7px;
-				// background: rgba(255,255,255,.35);
-				background: linear-gradient(45deg, rgba(0, 0, 0, 0.0980392) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.0980392) 75%, rgba(0, 0, 0, 0.0980392) 0), linear-gradient(45deg, rgba(0, 0, 0, 0.0980392) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.0980392) 75%, rgba(0, 0, 0, 0.0980392) 0), white;
-				background-repeat: repeat, repeat;
-				background-position: 0px 0, 6px 6px;
-				background-origin: padding-box, padding-box;
-				background-clip: border-box, border-box;
-				background-size: 12px 12px, 12px 12px;
-				transform: scaleX(1) scaleY(1) scaleZ(1);
+				border-radius: 4px;
 				pointer-events: none;
 			}
 
 			&:hover {
-				box-shadow: 0 0 0 3px #489bf770,
-							inset 0 0 0 2px #489bf7;
+				background-color: #489bf770;
+				
+				&:before {
+					box-shadow: 0 0 0 1px #489bf7c0;
+				}
 			}
 
 			.thumbnail {
 				position: absolute;
-				top: 5px;
-				left: 5px;
-				right: 5px;
-				bottom: 5px;
+				top: 2px;
+				left: 2px;
+				right: 2px;
+				bottom: 2px;
 				border-radius: 7px;
 				pointer-events: none;
 				background-position: 50% 50%;
