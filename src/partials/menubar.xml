@@ -2,6 +2,8 @@
 	<Menu name="Manual">
 		<Menu name="About Manual" shell="win -a"/>
 		<Menu type="divider"/>
+		<Menu name="Close File" click="close-file"/>
+		<Menu type="divider"/>
 		<Menu name="Quit Manual" shell="win -c"/>
 	</Menu>
 	<Menu name="Help">

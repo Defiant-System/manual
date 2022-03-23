@@ -62,15 +62,14 @@ const manual = {
 				// hide blank view
 				Self.els.layout.removeClass("show-blank-view");
 				// enable tools & click on show sidebar
-				Self.els.toolbar.prev.removeClass("tool-disabled_");
-				Self.els.toolbar.next.removeClass("tool-disabled_");
+				// Self.els.toolbar.prev.removeClass("tool-disabled_");
+				// Self.els.toolbar.next.removeClass("tool-disabled_");
 				Self.els.toolbar.sidebar.removeClass("tool-disabled_");
 				break;
 			case "parse-file":
 				if (event.file.data.slice(0,5).toLowerCase() === "[toc]") {
 					// shows sidebar toggler in the toolbar
 					window.find(".tool-sidebar-toogle").show();
-
 					// sidebar parse toc
 					Self.sidebar.dispatch({
 						type: "parse-toc",
@@ -80,7 +79,6 @@ const manual = {
 				} else {
 					// hides sidebar toggler in the toolbar
 					window.find(".tool-sidebar-toogle").hide();
-
 					// sidebar parse file
 					Self.contentView.dispatch({
 						type: "parse-markdown",
@@ -88,6 +86,8 @@ const manual = {
 						path: event.file.path,
 					});
 				}
+				// show file
+				Self.dispatch({ type: "setup-workspace" });
 				break;
 			// proxy events
 			case "sidebar-toggle-view":
