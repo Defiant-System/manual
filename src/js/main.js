@@ -1,11 +1,26 @@
 
 @import "./modules/marked.min.js";
 
+import blankView from "./modules/blankView"
 import sideBar from "./modules/sideBar"
 import contentView from "./modules/contentView"
 
+
 const manual = {
 	init() {
+		// fast references
+		this.els = {
+			layout: window.find("layout"),
+			blankView: window.find(".blank-view"),
+			toolbar: {
+				sidebar: window.find(`.toolbar-tool_[data-click="sidebar-toggle-view"]`),
+				prev: window.find(`.toolbar-tool_[data-click="go-prev"]`),
+				next: window.find(`.toolbar-tool_[data-click="go-next"]`),
+			}
+		};
+
+		// init all sub-objects
+		blankView.init();
 		sideBar.init(manual, contentView);
 		contentView.init(manual, sideBar);
 	},
@@ -15,14 +30,45 @@ const manual = {
 		switch (event.type) {
 			// system events
 			case "window.init":
-				defiant.shell("fs -ur '~/help/Welcome.md'")
-					.then(cmd => Self.dispatch({ type: "parse-file", file: cmd.result }));
+				// reset app by default - show initial view
+				Self.dispatch({ type: "reset-app" });
+				// defiant.shell("fs -ur '~/help/Welcome.md'")
+				// 	.then(cmd => {
+				// 		Self.dispatch({ type: "parse-file", file: cmd.result });
+				// 	});
 				break;
 			case "open.file":
 				event.open({ responseType: "text" })
 					.then(file => {
 						Self.dispatch({ type: "parse-file", file });
 					});
+				break;
+			// custom events
+			case "open-file":
+				window.dialog.open({ md: item => Self.dispatch(item) });
+				break;
+			case "reset-app":
+			case "close-file":
+				// hide sidebar, if needed
+				if (!sideBar.el.parent().hasClass("hidden")) {
+					Self.els.toolbar.sidebar
+						.prop({ className: "toolbar-tool_" })
+						.trigger("click");
+				}
+				// enable tools & click on show sidebar
+				Self.els.toolbar.prev.addClass("tool-disabled_");
+				Self.els.toolbar.next.addClass("tool-disabled_");
+				Self.els.toolbar.sidebar.addClass("tool-disabled_");
+				// show blank view
+				Self.els.layout.addClass("show-blank-view");
+				break;
+			case "setup-workspace":
+				// hide blank view
+				Self.els.layout.removeClass("show-blank-view");
+				// enable tools & click on show sidebar
+				Self.els.toolbar.prev.removeClass("tool-disabled_");
+				Self.els.toolbar.next.removeClass("tool-disabled_");
+				Self.els.toolbar.sidebar.removeClass("tool-disabled_");
 				break;
 			case "parse-file":
 				if (event.file.data.slice(0,5).toLowerCase() === "[toc]") {

@@ -1,5 +1,6 @@
 
 @import "marked";
+@import "blankView";
 
 @sidebar-speed: 280ms;
 
@@ -27,6 +28,26 @@ layout {
 				--color-1: #bbb;
 			}
 		}
+	}
+
+	&.show-blank-view {
+		.blank-view { display: block; }
+		.markdown-body { display: none; }
+	}
+
+	[class*="icon-"],
+	[class^="icon-"] {
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		width: 17px;
+		height: 17px;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		
+		&.icon-folder-open { background-image: url(~/icons/icon-folder-open.png); }
+		&.icon-clipboard   { background-image: url(~/icons/icon-clipboard.png); }
 	}
 }
 
