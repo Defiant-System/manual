@@ -36,7 +36,7 @@ const manual = {
 			case "window.init":
 				// reset app by default - show initial view
 				Self.dispatch({ type: "reset-app" });
-				// defiant.shell("fs -ur '~/help/Welcome.md'")
+				// karaqu.shell("fs -ur '~/help/Welcome.md'")
 				// 	.then(cmd => {
 				// 		Self.dispatch({ type: "parse-file", file: cmd.result });
 				// 	});

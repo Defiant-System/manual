@@ -15,7 +15,7 @@
 		switch (event.type) {
 			case "load-markdown-file":
 				// load file
-				file = await defiant.shell(`fs -r "${event.path}"`);
+				file = await karaqu.shell(`fs -r "${event.path}"`);
 				text = file.result.data;
 			case "parse-markdown":
 				text = text || event.data;
