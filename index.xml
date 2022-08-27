@@ -5,20 +5,11 @@
 		<meta name="author" value="Hakan Bilgin" namespace="sys"/>
 		<meta name="license" value="AGPL-3.0-or-later"/>
 		<meta name="repository" value="https://github.com/Defiant-System/manual"/>
-		<meta name="width" value="600"/>
-		<meta name="height" value="750"/>
-		<meta name="top" value="70"/>
-		<meta name="right" value="50"/>
-		<meta name="minimize"/>
-		<meta name="maximize"/>
-		<meta name="resize"/>
 		<meta name="script" value="src/js/main.js"/>
-		<meta name="style" value="src/css/main.less"/>
 		<meta name="icons" value="src/svg/icons.svg"/>
-		<meta name="content" value="src/partials/content.htm"/>
 		<meta name="xsl" value="src/partials/templates.xsl"/>
+		<meta name="spawn" value="src/partials/spawn.xml"/>
 		
-		@import "src/partials/toolbar.xml"
 		@import "src/partials/menubar.xml"
 	</Head>
 
