@@ -26,7 +26,6 @@
 			case "open.file":
 				(event.files || [event]).map(async fHandle => {
 					let file = await fHandle.open({ responseType: "text" });
-					console.log( file );
 					if (file.data.slice(0,5).toLowerCase() === "[toc]") {
 						Self.sidebar.dispatch({ type: "parse-toc", file });
 					} else {
@@ -34,6 +33,19 @@
 					}
 				});
 				break;
+
+			// proxy events
+			case "sidebar-toggle-view":
+				return Self.sidebar.dispatch(event);
+			
+			default:
+				if (event.el.length) {
+					let pEl = event.el.parents(`[data-area]`);
+					if (pEl.length) {
+						let name = pEl.data("area");
+						Self[name].dispatch(event);
+					}
+				}
 		}
 	},
 	sidebar: @import "./sidebar.js",
