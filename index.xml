@@ -9,8 +9,6 @@
 		<meta name="icons" value="src/svg/icons.svg"/>
 		<meta name="xsl" value="src/partials/templates.xsl"/>
 		<meta name="spawn" value="src/partials/spawn.xml"/>
-		
-		@import "src/partials/menubar.xml"
 	</Head>
 
 	@import "src/partials/data.xml"

@@ -1,28 +1,33 @@
 
 {
 	init() {
-		// fast and direct references
-		this.el = window.find("content > .markdown-body");
+		
 	},
 	async dispatch(event) {
 		let APP = manual,
-			Self = APP.contentView,
-			el,
-			app,
+			Self = APP.spawn.content,
+			Spawn = event.spawn,
+			path,
 			file,
 			htm,
-			text;
+			text,
+			el;
 		switch (event.type) {
-			case "load-markdown-file":
-				// load file
-				file = await karaqu.shell(`fs -r "${event.path}"`);
-				text = file.result.data;
-			case "parse-markdown":
-				text = text || event.data;
+			// system events
+			case "spawn.blur":
+				Self.el = false;
+				break;
+			case "spawn.focus":
+				Self.el = Spawn.find("content > .markdown-body");
+				break;
+				
+			// custom events
+			case "parse-file":
+				file = event.file;
 				
 				// post-parse file
-				app = event.path.startsWith("/app/ant/") ? event.path.match(/\/app\/ant\/(.+?)\//i)[1] : "";
-				text = text.replace(/~\//g, `/app/ant/${app}/`);
+				path = file.path.startsWith("/app/ant/") ? file.path.match(/\/app\/ant\/(.+?)\//i)[1] : "";
+				text = file.data.replace(/~\//g, `/app/ant/${path}/`);
 
 				// modify links to add target="_blank"
 				let renderer = new window.marked.Renderer();
@@ -34,7 +39,7 @@
 
 				// htm = rendermarkdown
 				htm = window.marked(text, { renderer });
-				this.el.html(htm);
+				Self.el.html(htm);
 				break;
 		}
 	}

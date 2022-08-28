@@ -7,6 +7,8 @@ TODO:
 
 */
 
+@import "./modules/marked.min.js";
+
 
 const manual = {
 	init() {
