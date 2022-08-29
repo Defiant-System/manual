@@ -39,7 +39,7 @@
 				return Self.sidebar.dispatch(event);
 			
 			default:
-				if (event.el.length) {
+				if (event.el) {
 					let pEl = event.el.parents(`[data-area]`);
 					if (pEl.length) {
 						let name = pEl.data("area");

@@ -42,10 +42,10 @@
 			<legend>
 				<xsl:choose>
 					<xsl:when test="count(./*) > 0">
-						<span class="arrow"><svg><use href="#icon-arrow-right"/></svg></span>
+						<i class="icon-arrow-right"></i>
 					</xsl:when>
 					<xsl:otherwise>
-						<span class="blank"></span>
+						<i class="icon-blank"></i>
 					</xsl:otherwise>
 				</xsl:choose>
 				<xsl:value-of select="@name"/>

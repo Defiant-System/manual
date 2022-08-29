@@ -22,6 +22,15 @@
 				break;
 				
 			// custom events
+			case "load-markdown-file":
+				// load file
+				karaqu.shell(`fs -o '${event.path}' null`)
+					.then(async exec => {
+						let fHandle = exec.result,
+							file = await fHandle.open({ responseType: "text" });
+						Self.dispatch({ type: "parse-file", file });
+					});
+				break;
 			case "parse-file":
 				file = event.file;
 				

@@ -24,9 +24,6 @@ layout {
 			&:after {
 				border-color: #555;
 			}
-			.arrow svg {
-				--color-1: #bbb;
-			}
 		}
 	}
 
@@ -46,6 +43,9 @@ layout {
 		background-repeat: no-repeat;
 		background-position: 50% 50%;
 		
+		&.icon-blank       { background-image: url(~/icons/icon-blank.png); }
+		&.icon-arrow-right { background-image: url(~/icons/icon-arrow-right.png); }
+
 		&.icon-folder-open { background-image: url(~/icons/icon-folder-open.png); }
 		&.icon-clipboard   { background-image: url(~/icons/icon-clipboard.png); }
 	}
@@ -77,20 +77,14 @@ sidebar {
 		bottom: 0;
 		overflow-y: auto;
 
-		.blank,
-		.arrow {
+		.icon-blank,
+		.icon-arrow-right {
 			display: inline-block;
-			width: 18px;
-			height: 18px;
+			width: 10px;
+			height: 10px;
 			text-align: center;
-			margin: 0 1px;
-
-			svg {
-				width: 10px;
-				height: 10px;
-				--color-1: #555;
-				transition: all 60ms;
-			}
+			margin: 0 5px 0 7px;
+			transition: all 60ms;
 		}
 
 		> ul {
@@ -119,7 +113,7 @@ sidebar {
 				width: 180px;
 
 				&.expanded {
-					legend .arrow svg {
+					legend .icon-arrow-right {
 						transform: rotate(90deg);
 					}
 					div {

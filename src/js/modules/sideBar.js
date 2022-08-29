@@ -19,7 +19,10 @@
 				Self.el = Spawn.find("sidebar > div");
 
 				// temp
-				setTimeout(() => Spawn.find(`.toolbar-tool_[data-click="sidebar-toggle-view"]`).trigger("click"), 300);
+				setTimeout(() => {
+					let el = Spawn.find(`.toolbar-tool_[data-click="sidebar-toggle-view"]`);
+					if (!el.hasClass("tool-active_")) el.trigger("click");
+				}, 400);
 				break;
 				
 			// custom events
@@ -35,7 +38,7 @@
 						let parts = line.match(/(.+)\[(.+?)\]\((.+?)\)/i);
 						let lineIndent;
 						if (parts) {
-							nodes.push(`<item name="${parts[2]}" path="${event.file.path}/${parts[3]}"/>`);
+							nodes.push(`<item name="${parts[2]}" path="${event.file.dir}${parts[3]}"/>`);
 							if (index !== 0) lineIndent = parts[1];
 						} else {
 							parts = line.match(/(.+?\b)(.+?)$/i);
@@ -47,6 +50,7 @@
 				nodes.push(`</item>`);
 
 				let data = $.xmlFromString(`<data>${nodes.join("")}</data>`);
+				// console.log( data.documentElement );
 
 				window.render({
 					data,
@@ -56,7 +60,9 @@
 				});
 
 				// auto-click the file document
-				Self.el.find("[data-path]:first legend").trigger("click");
+				// Self.el.find("[data-path]:nth(0) legend").trigger("click");
+
+				Self.el.find(".icon-arrow-right:nth(0)").trigger("click");
 				break;
 			case "sidebar-toggle-view":
 				pEl = Self.el.parents("sidebar");
@@ -64,23 +70,20 @@
 				pEl.toggleClass("hidden", isOn);
 				return isOn;
 			case "sidebar-select-article":
-				el = $(event.target).parents("legend:first");
-				
-				if (el.length && el.find(".arrow").length) {
-					pEl = el.parent();
-					pEl.toggleClass("expanded", pEl.hasClass("expanded"));
-					return;
+				el = $(event.target);
+				el = el.prop("nodeName") === "LI" ? el : el.parents("li:first");
+				// handles arrow icon
+				if (el.find("> legend .icon-arrow-right").length) {
+					return el.toggleClass("expanded", el.hasClass("expanded"));
 				}
-
-				// turn off previous active
-				Self.el.find(".active").removeClass("active");
-
-				el = $(event.target).parents("li:first");
-				if (el.length) {
+				// handles node matching a file
+				if (el.length && el.data("path")) {
+					// reset active element
+					Self.el.find(".active").removeClass("active");
+					// make current active
 					el.addClass("active")
-
 					// show file in contentView
-					console.log({
+					APP.spawn.content.dispatch({
 						type: "load-markdown-file",
 						path: el.attr("data-path"),
 					});
