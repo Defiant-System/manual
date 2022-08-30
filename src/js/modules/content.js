@@ -11,6 +11,7 @@
 			file,
 			htm,
 			text,
+			value,
 			el;
 		switch (event.type) {
 			// system events
@@ -22,22 +23,41 @@
 				break;
 				
 			// custom events
+			case "history-go":
+				Self.dispatch({ ...event, type: "update-toolbar" });
+				break;
+			case "update-toolbar":
+				// update toolbar buttons
+				value = Spawn.data.history.canGoBack;
+				Spawn.find(`.toolbar-tool_[data-click="go-prev"]`).toggleClass("tool-disabled_", value);
+
+				value = Spawn.data.history.canGoForward;
+				Spawn.find(`.toolbar-tool_[data-click="go-next"]`).toggleClass("tool-disabled_", value);
+
+				value = Spawn.data.hasToc;
+				Spawn.find(`.toolbar-tool_[data-click="sidebar-toggle-view"]`).toggleClass("tool-disabled_", value);
+				break;
 			case "load-markdown-file":
 				// load file
 				karaqu.shell(`fs -o '${event.path}' null`)
 					.then(async exec => {
 						let fHandle = exec.result,
 							file = await fHandle.open({ responseType: "text" });
-						Self.dispatch({ type: "parse-file", file });
+						Self.dispatch({ type: "parse-file", spawn: Spawn, file });
 					});
 				break;
 			case "parse-file":
 				file = event.file;
-				
+
 				// post-parse file
 				path = file.path.startsWith("/app/ant/") ? file.path.match(/\/app\/ant\/(.+?)\//i)[1] : "";
 				text = file.data.replace(/~\//g, `/app/ant/${path}/`);
 
+				// add entry to history
+				Spawn.data.history.push(path);
+
+				Self.dispatch({ ...event, type: "update-toolbar" });
+				
 				// modify links to add target="_blank"
 				let renderer = new window.marked.Renderer();
 				let linkRenderer = renderer.link;

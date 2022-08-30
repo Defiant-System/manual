@@ -59,10 +59,12 @@
 					target: Self.el
 				});
 
+				// property to enable toolbar sidebar toggle-button
+				Spawn.data.hasToc = true;
 				// auto-click the file document
-				// Self.el.find("[data-path]:nth(0) legend").trigger("click");
-
-				Self.el.find(".icon-arrow-right:nth(0)").trigger("click");
+				Self.el.find("[data-path]:nth(0) legend").trigger("click");
+				// temp
+				// Self.el.find(".icon-arrow-right:nth(0)").trigger("click");
 				break;
 			case "sidebar-toggle-view":
 				pEl = Self.el.parents("sidebar");
@@ -86,6 +88,7 @@
 					APP.spawn.content.dispatch({
 						type: "load-markdown-file",
 						path: el.attr("data-path"),
+						spawn: Spawn,
 					});
 				}
 				break;
