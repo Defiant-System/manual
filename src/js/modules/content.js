@@ -26,9 +26,9 @@
 			case "history-go":
 				if (event.arg === "-1") Spawn.data.history.goBack();
 				else Spawn.data.history.goForward();
-
+				// put rendered text into view
 				Self.el.html(Spawn.data.history.current.htm);
-
+				// update toolbar tools
 				Self.dispatch({ ...event, type: "update-toolbar" });
 				break;
 			case "update-toolbar":
@@ -53,7 +53,6 @@
 				break;
 			case "parse-file":
 				file = event.file;
-
 				// post-parse file
 				path = file.path.startsWith("/app/ant/") ? file.path.match(/\/app\/ant\/(.+?)\//i)[1] : "";
 				text = file.data.replace(/~\//g, `/app/ant/${path}/`);
