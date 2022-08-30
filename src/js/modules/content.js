@@ -24,15 +24,20 @@
 				
 			// custom events
 			case "history-go":
+				if (event.arg === "-1") Spawn.data.history.goBack();
+				else Spawn.data.history.goForward();
+
+				Self.el.html(Spawn.data.history.current.htm);
+
 				Self.dispatch({ ...event, type: "update-toolbar" });
 				break;
 			case "update-toolbar":
 				// update toolbar buttons
 				value = Spawn.data.history.canGoBack;
-				Spawn.find(`.toolbar-tool_[data-click="go-prev"]`).toggleClass("tool-disabled_", value);
+				Spawn.find(`.toolbar-tool_[data-click="history-go"][data-arg="-1"]`).toggleClass("tool-disabled_", value);
 
 				value = Spawn.data.history.canGoForward;
-				Spawn.find(`.toolbar-tool_[data-click="go-next"]`).toggleClass("tool-disabled_", value);
+				Spawn.find(`.toolbar-tool_[data-click="history-go"][data-arg="1"]`).toggleClass("tool-disabled_", value);
 
 				value = Spawn.data.hasToc;
 				Spawn.find(`.toolbar-tool_[data-click="sidebar-toggle-view"]`).toggleClass("tool-disabled_", value);
@@ -52,11 +57,6 @@
 				// post-parse file
 				path = file.path.startsWith("/app/ant/") ? file.path.match(/\/app\/ant\/(.+?)\//i)[1] : "";
 				text = file.data.replace(/~\//g, `/app/ant/${path}/`);
-
-				// add entry to history
-				Spawn.data.history.push(path);
-
-				Self.dispatch({ ...event, type: "update-toolbar" });
 				
 				// modify links to add target="_blank"
 				let renderer = new window.marked.Renderer();
@@ -69,6 +69,10 @@
 				// htm = rendermarkdown
 				htm = window.marked(text, { renderer });
 				Self.el.html(htm);
+				// add entry to history
+				Spawn.data.history.push({ path, htm });
+				// update toolbar tools
+				Self.dispatch({ ...event, type: "update-toolbar" });
 				break;
 		}
 	}

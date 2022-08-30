@@ -34,9 +34,8 @@
 				event.file.data.slice(6).split("\n")
 					.map((line, index) => {
 						if (!line.trim()) return;
-
-						let parts = line.match(/(.+)\[(.+?)\]\((.+?)\)/i);
-						let lineIndent;
+						let parts = line.match(/(.+)\[(.+?)\]\((.+?)\)/i),
+							lineIndent;
 						if (parts) {
 							nodes.push(`<item name="${parts[2]}" path="${event.file.dir}${parts[3]}"/>`);
 							if (index !== 0) lineIndent = parts[1];
@@ -64,7 +63,7 @@
 				// auto-click the file document
 				Self.el.find("[data-path]:nth(0) legend").trigger("click");
 				// temp
-				// Self.el.find(".icon-arrow-right:nth(0)").trigger("click");
+				Self.el.find(".icon-arrow-right:nth(0)").trigger("click");
 				break;
 			case "sidebar-toggle-view":
 				pEl = Self.el.parents("sidebar");
