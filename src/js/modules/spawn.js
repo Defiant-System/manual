@@ -32,6 +32,7 @@
 					if (file.path.startsWith("/app/")) {
 						let [a, ns, app] = file.path.match(/\/app\/(\w+)\/(\w+)/i);
 						APP.spawns[`${ns}:${app}`] = Spawn;
+						Spawn.data.file = file;
 					}
 
 					if (file.data.slice(0,5).toLowerCase() === "[toc]") {
