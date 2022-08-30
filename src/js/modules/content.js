@@ -16,7 +16,7 @@
 		switch (event.type) {
 			// system events
 			case "spawn.blur":
-				Self.el = false;
+				// Self.el = false;
 				break;
 			case "spawn.focus":
 				Self.el = Spawn.find("content > .markdown-body");

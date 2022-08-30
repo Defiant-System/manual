@@ -28,6 +28,12 @@
 			case "open.file":
 				(event.files || [event]).map(async fHandle => {
 					let file = await fHandle.open({ responseType: "text" });
+
+					if (file.path.startsWith("/app/")) {
+						let [a, ns, app] = file.path.match(/\/app\/(\w+)\/(\w+)/i);
+						APP.spawns[`${ns}:${app}`] = Spawn;
+					}
+
 					if (file.data.slice(0,5).toLowerCase() === "[toc]") {
 						Self.sidebar.dispatch({ type: "parse-toc", spawn: Spawn, file });
 					} else {

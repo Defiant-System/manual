@@ -29,13 +29,14 @@
 			case "parse-toc":
 				let nodes = [];
 				let indent;
-
+				
 				// parse markdown toc into XML structure
 				event.file.data.slice(6).split("\n")
 					.map((line, index) => {
 						if (!line.trim()) return;
 						let parts = line.match(/(.+)\[(.+?)\]\((.+?)\)/i),
 							lineIndent;
+						console.log( parts );
 						if (parts) {
 							nodes.push(`<item name="${parts[2]}" path="${event.file.dir}${parts[3]}"/>`);
 							if (index !== 0) lineIndent = parts[1];
@@ -49,7 +50,7 @@
 				nodes.push(`</item>`);
 
 				let data = $.xmlFromString(`<data>${nodes.join("")}</data>`);
-				// console.log( data.documentElement );
+				return console.log( data.documentElement );
 
 				window.render({
 					data,
