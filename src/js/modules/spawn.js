@@ -25,13 +25,6 @@
 					.filter(i => typeof Self[i].dispatch === "function")
 					.map(i => Self[i].dispatch(event));
 				break;
-			case "open.url":
-				event.url.map(async path => {
-					let data = await window.fetch(path),
-						file = { path, data };
-					Self.dispatch({ ...event, type: "file-parse", file });
-				});
-				break;
 			case "open.file":
 				(event.files || [event]).map(async fHandle => {
 					let file = await fHandle.open({ responseType: "text" });
@@ -44,7 +37,18 @@
 					Self.dispatch({ ...event, type: "file-parse", file });
 				});
 				break;
+			case "open-url":
+				event.url.map(async path => {
+					let data = await window.fetch(path),
+						file = { path, data };
+					Self.dispatch({ ...event, type: "file-parse", file });
+				});
+				break;
 			case "file-parse":
+				// Reset app
+				Spawn.find("layout").removeClass("show-blank-view");
+				Spawn.find(".blank-view").remove();
+
 				if (event.file.data.slice(0,5).toLowerCase() === "[toc]") {
 					Self.sidebar.dispatch({ type: "parse-toc", spawn: Spawn, file: event.file });
 				} else {
@@ -69,6 +73,7 @@
 				}
 		}
 	},
+	blankView: @import "./blankView.js",
 	sidebar: @import "./sidebar.js",
 	content: @import "./content.js",
 }

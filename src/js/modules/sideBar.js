@@ -19,10 +19,10 @@
 				Self.el = Spawn.find("sidebar > div");
 
 				// temp
-				setTimeout(() => {
-					let el = Spawn.find(`.toolbar-tool_[data-click="sidebar-toggle-view"]`);
-					if (!el.hasClass("tool-active_")) el.trigger("click");
-				}, 400);
+				// setTimeout(() => {
+				// 	let el = Spawn.find(`.toolbar-tool_[data-click="sidebar-toggle-view"]`);
+				// 	if (!el.hasClass("tool-active_")) el.trigger("click");
+				// }, 400);
 				break;
 				
 			// custom events
@@ -69,7 +69,7 @@
 				// auto-click the file document
 				Self.el.find("[data-path]:nth(0) legend").trigger("click");
 				// temp
-				Self.el.find(".icon-arrow-right:nth(0)").trigger("click");
+				// Self.el.find(".icon-arrow-right:nth(0)").trigger("click");
 				break;
 			case "sidebar-toggle-view":
 				pEl = Self.el.parents("sidebar");

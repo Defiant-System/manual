@@ -1,7 +1,7 @@
 <Data>
 	<Samples>
-		<i name="About System" path="~/help/Welcome.md"/>
-		<i name="About Application" path="~/sample/sample-2.md"/>
-		<i name="Random" path="~/sample/sample-3.md"/>
+		<i name="TOC" path="/help/toc.md"/>
+		<i name="About System" path="/help/Welcome.md"/>
+		<i name="About Applications" path="/help/Apps/Build-in Apps.md"/>
 	</Samples>
 </Data>

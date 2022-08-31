@@ -28,8 +28,11 @@ const manual = {
 				}
 				break;
 			case "window.init":
+				// fallback on system docs (!?)
 				spawn = window.open("spawn");
-				Self.spawn.dispatch({ ...event, type: "spawn.init", spawn });
+				// Self.spawn.dispatch({ type: "open.url", url: ["/help/toc.md"], spawn });
+				// Self.spawn.dispatch({ ...event, type: "spawn.init", spawn });
+				Self.spawn.blankView.dispatch({ type: "render-blank-view", spawn });
 				break;
 			case "open.file":
 				spawn = window.open("spawn");
