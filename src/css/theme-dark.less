@@ -1,0 +1,74 @@
+
+&[data-theme="dark"] {
+	layout {
+		background: transparent;
+
+		content {
+			.markdown-body,
+			hr,
+			p,
+			td,
+			li,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			th,
+			.math,
+			caption,
+			dd,
+			dt,
+			blockquote {
+				color: #c5c5c5;
+				text-shadow: 0 1px 0 rgba(0,0,0,.35);
+				border-color: rgba(0,0,0,.25);
+				box-shadow: none;
+			}
+
+			td,
+			th {
+				background: #333;
+			}
+
+			pre,
+			code,
+			tt {
+				background: transparent;
+				color: #eee;
+			}
+
+			pre {
+				background: rgba(255,255,255,.15);
+				border-color: rgba(255,255,255,.35);
+			}
+
+			h1 {
+				position: relative;
+
+				&:after {
+					content: "";
+					position: absolute;
+					bottom: -2px;
+					left: 0;
+					right: 0;
+					height: 1px;
+					background: linear-gradient(90deg, transparent 0%, #ffffff44 50%, transparent 100%);;
+				}
+			}
+
+			h2 {
+				border-color: #555;
+			}
+
+			hr {
+				position: relative;
+				height: 1px;
+				border: 0;
+				background: linear-gradient(90deg, transparent 0%, #ffffff44 50%, transparent 100%);;
+				box-shadow: 0 -1px 0 rgba(0,0,0,.25);
+			}
+		}
+	}
+}
