@@ -7,7 +7,7 @@ const manual = {
 	init() {
 		this.spawns = {};
 		// listen to system event
-		karaqu.on("sys:window.closed", this.dispatch);
+		window.on("sys:window.closed", this.dispatch);
 		// init all sub-objects
 		Object.keys(this)
 			.filter(i => typeof this[i].init === "function")
