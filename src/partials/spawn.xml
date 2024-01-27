@@ -8,6 +8,7 @@
 		<meta name="maximize"/>
 		<meta name="resize"/>
 		<meta name="style" value="../css/main.less"/>
+		<meta name="themes" value="../css/themes.less"/>
 		<meta name="content" value="content.htm"/>
 
 		@import "toolbar.xml"

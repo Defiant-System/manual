@@ -66,6 +66,30 @@
 		}
 	}
 	
+	sidebar {
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			width: 1px;
+			border: 0;
+			background: rgba(#000,.15);
+		}
+
+		&:after {
+			right: -1px;
+			background: linear-gradient(0deg, transparent, #ffffff66, transparent);
+			mix-blend-mode: overlay;
+		}
+
+		.toc {
+			right: 1px;
+		}
+	}
+
 	layout {
 		background: transparent;
 

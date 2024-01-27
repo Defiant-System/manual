@@ -15,6 +15,10 @@
 			// system events
 			case "spawn.open":
 				Spawn.data.history = new window.History;
+
+				// DEV-ONLY-START
+				Test.init(APP, Spawn);
+				// DEV-ONLY-END
 				break;
 			case "spawn.init":
 				break;
