@@ -30,6 +30,9 @@
 					.map(i => Self[i].dispatch(event));
 				break;
 			case "open.file":
+				// proxy event if URL is to be opened
+				if (event.url) return Self.dispatch({ ...event, type: "open-url" });
+
 				(event.files || [event]).map(async fHandle => {
 					let file = await fHandle.open({ responseType: "text" });
 
