@@ -10,6 +10,7 @@
 			isOn,
 			pEl,
 			el;
+		// console.log(event);
 		switch (event.type) {
 			// system events
 			case "spawn.blur":
