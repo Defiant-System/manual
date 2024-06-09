@@ -56,13 +56,21 @@
 				// post-parse file
 				path = file.path.startsWith("/app/ant/") ? file.path.match(/\/app\/ant\/(.+?)\//i)[1] : "";
 				text = file.data.replace(/~\//g, `/app/ant/${path}/`);
-				
+
 				// modify links to add target="_blank"
 				let renderer = new window.marked.Renderer();
 				let linkRenderer = renderer.link;
 				renderer.link = (href, title, text) => {
 					let html = linkRenderer.call(renderer, href, title, text);
-					return html.replace(/^<a /, '<a target="_blank" ');
+					if (href.startsWith("$")) {
+						let [app, pipe] = href.slice(1).split("|");
+						let cmd = app.includes("-") ? app.replace(/\//g, " ") : `win -o ${app}`;
+						pipe = pipe ? `data-pipe="${pipe.replace(/"/g, "'")}"` : "";
+						html = `<span data-click="karaqu-shell" data-arg="${cmd}" ${pipe}>${text}</span>`;
+					} else {
+						html = html.replace(/^<a /, '<a target="_blank" ');
+					}				
+					return html;
 				};
 
 				// htm = rendermarkdown
@@ -72,6 +80,13 @@
 				Spawn.data.history.push({ path, htm });
 				// update toolbar tools
 				Self.dispatch({ ...event, type: "update-toolbar" });
+				break;
+
+			case "karaqu-shell":
+				el = $(event.target);
+				value = el.data("arg");
+				text = (el.data("pipe") || "").replace(/'/g, '"');
+				karaqu.shell(`${value} ${text}`);
 				break;
 		}
 	}

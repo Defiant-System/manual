@@ -7,6 +7,12 @@
 
 @sidebar-speed: 280ms;
 
+
+&.smooth-trans {
+	transition: width @sidebar-speed * 0.75;
+}
+
+
 layout {
 	background: #fff;
 	position: absolute;
@@ -56,7 +62,7 @@ layout {
 
 sidebar {
 	background: transparent;
-	width: 180px;
+	width: 150px;
 	transition: width @sidebar-speed * 0.75;
 
 	&.hidden {
@@ -113,7 +119,7 @@ sidebar {
 
 			li {
 				position: relative;
-				width: 180px;
+				width: 150px;
 
 				&.expanded {
 					legend .icon-arrow-right {

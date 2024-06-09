@@ -69,10 +69,34 @@
 				Spawn.data.hasToc = true;
 				// auto-click the file document
 				Self.el.find("[data-path]:nth(0) legend").trigger("click");
-				// temp
-				// Self.el.find(".icon-arrow-right:nth(0)").trigger("click");
+				// auto-click toolbar sidebar button
+				Spawn.find(`.toolbar-tool_[data-click="sidebar-toggle-view"]`).trigger("click")
 				break;
+
 			case "sidebar-toggle-view":
+				el = Self.el.parents("sidebar");
+				isOn = el.hasClass("hidden");
+
+				// enable smooth transition
+				pEl = Spawn.find(".win-body_").addClass("smooth-trans");
+
+				if (isOn) {
+					Spawn.width += 150;
+					el.cssSequence("!hidden", "transitionend", el => {
+						// enable smooth transition
+						pEl.removeClass("smooth-trans");
+					});
+				} else {
+					Spawn.width -= 150;
+					el.cssSequence("hidden", "transitionend", el => {
+						// enable smooth transition
+						pEl.removeClass("smooth-trans");
+					});
+				}
+
+				return isOn;
+
+			case "sidebar-toggle-view-old":
 				pEl = Self.el.parents("sidebar");
 				isOn = pEl.hasClass("hidden");
 				pEl.toggleClass("hidden", isOn);

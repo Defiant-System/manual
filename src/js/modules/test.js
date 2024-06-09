@@ -1,8 +1,8 @@
 
 let Test = {
 	init(APP, spawn) {
-		return;
+		// return;
 
-		setTimeout(() => spawn.find(`.toolbar-tool_[data-click="sidebar-toggle-view"]`).trigger("click"), 500);
+		// setTimeout(() => spawn.find(`.toolbar-tool_[data-click="sidebar-toggle-view"]`).trigger("click"), 500);
 	}
 };
