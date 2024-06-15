@@ -54,6 +54,7 @@ layout {
 		
 		&.icon-blank       { background-image: url(~/icons/icon-blank.png); }
 		&.icon-arrow-right { background-image: url(~/icons/icon-arrow-right.png); }
+		&.icon-doc         { background-image: url(~/icons/icon-doc.png); }
 
 		&.icon-folder-open { background-image: url(~/icons/icon-folder-open.png); }
 		&.icon-clipboard   { background-image: url(~/icons/icon-clipboard.png); }
@@ -95,6 +96,10 @@ sidebar {
 			margin: 0 5px 0 7px;
 			transition: all 60ms;
 		}
+		
+		.icon-arrow-right {
+			cursor: pointer;
+		}
 
 		> ul {
 			position: absolute;
@@ -107,6 +112,10 @@ sidebar {
 			.active {
 				background: #36b;
 				color: #fff;
+
+				&:before {
+					filter: invert(1) brightness(2);
+				}
 			}
 
 			legend {
@@ -121,10 +130,15 @@ sidebar {
 				position: relative;
 				width: 150px;
 
+				&[data-path*="/"] {
+					cursor: pointer;
+				}
+
 				&.expanded {
 					legend .icon-arrow-right {
 						transform: rotate(90deg);
 					}
+
 					div {
 						max-height: 500px;
 
@@ -146,7 +160,19 @@ sidebar {
 					transition: all @sidebar-speed * 0.75;
 
 					li {
-						padding: 4px 0 3px 31px;
+						padding: 4px 0 3px 34px;
+
+						&:before {
+							content: "";
+							position: absolute;
+							top: 7px;
+							left: 17px;
+							width: 13px;
+							height: 13px;
+							opacity: .75;
+							background: url(~/icons/icon-doc.png) 50% 50% no-repeat;
+							background-size: 13px 13px;
+						}
 					}
 				}
 			}

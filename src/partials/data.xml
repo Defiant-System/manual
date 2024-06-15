@@ -1,7 +1,7 @@
 <Data>
 	<Samples>
-		<i name="TOC" path="/help/toc.md"/>
-		<i name="About System" path="/help/Welcome.md"/>
-		<i name="About Applications" path="/help/Apps/Build-in Apps.md"/>
+		<i name="TOC" path="/cdn/help/toc.md"/>
+		<i name="About System" path="/cdn/help/Welcome.md"/>
+		<i name="About Applications" path="/cdn/help/Apps/Build-in Apps.md"/>
 	</Samples>
 </Data>
