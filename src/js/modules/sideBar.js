@@ -102,8 +102,8 @@
 				pEl.toggleClass("hidden", isOn);
 				return isOn;
 			case "sidebar-select-article":
-				el = $(event.target);
-				el = el.prop("nodeName") === "LI" ? el : el.parents("li:first");
+				el = $(event.target).parents("?li").get(0);
+				// el = el.prop("nodeName") === "LI" ? el : el.parents("?li:first");
 				// handles arrow icon
 				if (el.find("> legend .icon-arrow-right").length) {
 					return el.toggleClass("expanded", el.hasClass("expanded"));
