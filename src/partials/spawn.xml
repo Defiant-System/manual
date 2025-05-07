@@ -1,5 +1,6 @@
 <Spawn id="spawn">
 	<Head>
+		<meta name="title" value="Karaqu Manual"/>
 		<meta name="width" value="600" min="500"/>
 		<meta name="height" value="750" min="380"/>
 		<meta name="top" value="70"/>
