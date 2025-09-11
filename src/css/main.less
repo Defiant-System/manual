@@ -126,11 +126,15 @@ sidebar {
 				}
 			}
 
+			> li:not(.active) {
+				cursor: pointer;
+			}
+
 			li {
 				position: relative;
 				width: 150px;
 
-				&[data-path*="/"] {
+				&[data-path*="/"]:not(.active) {
 					cursor: pointer;
 				}
 

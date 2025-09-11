@@ -64,7 +64,7 @@
 					let html = linkRenderer.call(renderer, href, title, text);
 					if (href.startsWith("$")) {
 						let [app, pipe] = href.slice(1).split("|");
-						let cmd = app.includes("-") ? app.replace(/\//g, " ") : `win -o ${app}`;
+						let cmd = app.includes("-") ? app.replace(/\\/g, " ") : `win -o ${app}`;
 						pipe = pipe ? `data-pipe="${pipe.replace(/"/g, "'")}"` : "";
 						html = `<span data-click="karaqu-shell" data-arg="${cmd}" ${pipe}>${text}</span>`;
 					} else {
@@ -83,10 +83,26 @@
 				break;
 
 			case "karaqu-shell":
+				// already playing, stop it
+				if (APP.player) APP.player.stop();
+				// prepare to play
 				el = $(event.target);
 				value = el.data("arg");
 				text = (el.data("pipe") || "").replace(/'/g, '"');
-				karaqu.shell(`${value} ${text}`);
+				let cmd = await karaqu.shell(`${value} ${text}`);
+
+				if (cmd.result.stop) {
+					// possible command returned music player - save reference for "window.close"
+					APP.player = cmd.result;
+					// insert a stop button
+					event.el.after(`<i> - <span data-click="stop-player">Stop</span></i>`);
+				}
+				break;
+			case "stop-player":
+				// try to stop it
+				APP.player?.stop();
+				// remove stop button
+				event.el.parent().remove();
 				break;
 		}
 	}

@@ -21,8 +21,12 @@ const manual = {
 		// proxy spawn events
 		if (event.spawn) return Self.spawn.dispatch(event);
 
+		// console.log(event);
 		switch (event.type) {
 			// system events
+			case "window.close":
+				if (Self.player?.stop) Self.player.stop();
+				break;
 			case "window.closed":
 				if (Self.spawns[event.detail]) {
 					Self.spawns[event.detail].close();
