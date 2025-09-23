@@ -84,14 +84,14 @@
 
 			case "karaqu-shell":
 				// already playing, stop it
-				if (APP.player) APP.player.stop();
+				if (APP.player) APP.player?.stop();
 				// prepare to play
 				el = $(event.target);
 				value = el.data("arg");
 				text = (el.data("pipe") || "").replace(/'/g, '"');
 				let cmd = await karaqu.shell(`${value} ${text}`);
 
-				if (cmd.result.stop) {
+				if (cmd.result && cmd.result.stop) {
 					// possible command returned music player - save reference for "window.close"
 					APP.player = cmd.result;
 					// insert a stop button

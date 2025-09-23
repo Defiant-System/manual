@@ -85,8 +85,14 @@
 			mix-blend-mode: overlay;
 		}
 
-		.toc {
+		> div.toc {
 			right: 1px;
+
+			> ul {
+				.active {
+					background: #79e;
+				}
+			}
 		
 			.icon-arrow-right {
 				filter: invert(1) drop-shadow(0 1px 0 rgba(#000,.5));
@@ -131,6 +137,14 @@
 				text-shadow: 0 1px 0 rgba(0,0,0,.35);
 				border-color: rgba(0,0,0,.25);
 				box-shadow: none;
+			}
+
+			a {
+				color: #a5d2ff;
+			}
+
+			span[data-click] {
+				color: #a5d2ff;
 			}
 
 			td,
