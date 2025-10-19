@@ -3,7 +3,8 @@
 
 {
 	init() {
-
+		// references
+		this.data = {};
 	},
 	dispatch(event) {
 		let APP = manual,
@@ -38,6 +39,10 @@
 
 					if (file.path.startsWith("/app/")) {
 						let [a, ns, app] = file.path.match(/\/app\/(\w+)\/(\w+)/i);
+						// save reference to app
+						APP.spawn.data.ns = ns;
+						APP.spawn.data.app = app;
+						// spawn origins
 						APP.spawns[`${ns}:${app}`] = Spawn;
 						Spawn.data.file = file;
 					}

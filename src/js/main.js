@@ -43,6 +43,15 @@ const manual = {
 				break;
 		}
 	},
+	openDoc(filepath) {
+		let APP = manual,
+			ns = APP.spawn.data.ns,
+			app = APP.spawn.data.app,
+			spawn = APP.spawns[`${ns}:${app}`],
+			path = `/app/${ns}/${app}/${filepath}`;
+		// show file in contentView
+		APP.spawn.content.dispatch({ type: "load-markdown-file", spawn, path });
+	},
 	spawn: @import "./modules/spawn.js",
 };
 

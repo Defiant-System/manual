@@ -1,0 +1,5 @@
+<Shell>
+	<i object="man" type="Application" description="Public Interace for Manual">
+		<i switch="o" name="openDoc" arg="[path]" description="Opens sub page of manual pages."/>
+	</i>
+</Shell>
